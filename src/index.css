@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bvg-bg: #FFFFFF;
+    --bvg-surface: #F8F9FA;
+    --bvg-primary: #0A1F44;
+    --bvg-primary-hover: #0F2D63;
+    --bvg-accent: #0055FF;
+    --bvg-text: #0A1F44;
+    --bvg-muted: #475569;
+    --bvg-border: #E2E8F0;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bvg-bg);
+    color: var(--bvg-text);
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Outfit', sans-serif;
+}
+
+::selection {
+    background: #0A1F44;
+    color: #FFFFFF;
+}
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 222 65% 15%;
+        --card: 0 0% 100%;
+        --card-foreground: 222 65% 15%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 222 65% 15%;
+        --primary: 222 74% 15%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 210 17% 97%;
+        --secondary-foreground: 222 65% 15%;
+        --muted: 210 17% 97%;
+        --muted-foreground: 215 16% 47%;
+        --accent: 222 100% 50%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 214 32% 91%;
+        --input: 214 32% 91%;
+        --ring: 222 74% 15%;
+        --radius: 0.125rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* Grid paper background */
+.bvg-grid-bg {
+    background-image:
+        linear-gradient(to right, rgba(10, 31, 68, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(10, 31, 68, 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+}
+
+.bvg-grid-bg-dark {
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 56px 56px;
+}
+
+/* Link underline expansion */
+.nav-link {
+    position: relative;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 1px;
+    width: 0;
+    background: #0A1F44;
+    transition: width 250ms ease;
+}
+.nav-link:hover::after,
+.nav-link[data-active="true"]::after {
+    width: 100%;
+}
+
+/* Button hover lift */
+.bvg-btn-primary {
+    transition: transform 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
+}
+.bvg-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -12px rgba(10, 31, 68, 0.35);
+}
+
+/* Card with accent border on hover */
+.bvg-card {
+    position: relative;
+    transition: box-shadow 260ms ease, transform 260ms ease;
+}
+.bvg-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: #0055FF;
+    transition: width 320ms ease;
+}
+.bvg-card:hover::after {
+    width: 100%;
+}
+.bvg-card:hover {
+    box-shadow: 0 18px 40px -24px rgba(10, 31, 68, 0.18);
+}
+
+/* Process step connector line */
+.step-connector {
+    background: repeating-linear-gradient(to right, #CBD5E1 0 8px, transparent 8px 14px);
+}
+
+/* Marquee for scrolling badges */
+@keyframes bvg-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+.bvg-marquee {
+    animation: bvg-marquee 40s linear infinite;
+}
+
+/* Noise overlay */
+.bvg-noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.6;
+    mix-blend-mode: overlay;
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit; margin-right: inherit;
+        margin-top: inherit; margin-bottom: inherit;
+        padding-left: inherit; padding-right: inherit;
+        padding-top: inherit; padding-bottom: inherit;
+        column-gap: inherit; row-gap: inherit; gap: inherit;
+        border-left-width: inherit; border-right-width: inherit;
+        border-top-width: inherit; border-bottom-width: inherit;
+        border-left-style: inherit; border-right-style: inherit;
+        border-top-style: inherit; border-bottom-style: inherit;
+        border-left-color: inherit; border-right-color: inherit;
+        border-top-color: inherit; border-bottom-color: inherit;
+    }
+}
