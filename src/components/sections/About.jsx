@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useLang } from "context/LangContext";
 
 const OFFICE_IMG =
-  "https://images.pexels.com/photos/17872188/pexels-photo-17872188.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+  "./images/hospital-night.png";
 
 const LeaderCard = ({ role, name, description, testId }) => (
   <div
