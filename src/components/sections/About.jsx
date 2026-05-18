@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useLang } from "context/LangContext";
 
 const OFFICE_IMG =
-  "./images/hospital-night.png";
+  "./images/building2.jpg";
 
 const LeaderCard = ({ role, name, description, testId }) => (
   <div
